@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "langgraph-rag-guardrails"
@@ -28,7 +28,7 @@ dependencies = [
     # Vector DB
     "qdrant-client>=1.9.0",
     # Cache
-    "redis[asyncio]>=5.0.0",
+    "redis>=5.0.0",
     # Sparse retrieval
     "rank-bm25>=0.2.2",
     # Rate limiting

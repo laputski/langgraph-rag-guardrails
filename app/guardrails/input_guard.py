@@ -10,7 +10,7 @@ from typing import Optional
 _TOXIC_PATTERNS: list[re.Pattern] = [
     re.compile(p, re.IGNORECASE)
     for p in [
-        r"\bkill\s+(yourself|all|them|him|her|everyone)\b",
+        r"\bkill\s+(yourself|myself|all|them|him|her|everyone)\b",
         r"\b(bomb|explosive|weapon)\s+(instructions|how\s+to|make|build)\b",
         r"\b(n[i1]gg[ae]r|ch[i1]nk|sp[i1]c|k[i1]ke|f[a4]gg[o0]t)\b",
         r"\b(hate|exterminate|genocide)\s+(all\s+)?(jews?|muslims?|christians?|blacks?|whites?)\b",

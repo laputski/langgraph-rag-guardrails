@@ -8,8 +8,6 @@ from qdrant_client.models import (
     Distance,
     VectorParams,
     PointStruct,
-    Filter,
-    SearchRequest,
 )
 
 from app.graph.state import ScoredChunk
@@ -73,14 +71,14 @@ class VectorStoreService:
     def dense_search(
         self, embedding: list[float], top_k: int = 10
     ) -> list[ScoredChunk]:
-        results = self._client.search(
+        response = self._client.query_points(
             collection_name=self._collection,
-            query_vector=embedding,
+            query=embedding,
             limit=top_k,
             with_payload=True,
         )
         chunks = []
-        for r in results:
+        for r in response.points:
             p = r.payload
             chunks.append(
                 ScoredChunk(

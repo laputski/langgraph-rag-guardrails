@@ -77,7 +77,7 @@ class OutputGuard:
             return False
 
         answer_tokens = _tokenize(answer)
-        if len(answer_tokens) <= 20:
+        if len(answer.split()) <= 15:
             # Very short answers are hard to judge by overlap alone
             return False
 
