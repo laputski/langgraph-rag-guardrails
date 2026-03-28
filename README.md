@@ -1,6 +1,7 @@
-# Advanced RAG — Reference Implementation
+# Advanced RAG Reference Implementation
 
 Reference implementation of **Advanced RAG** from scratch using LangGraph, hybrid retrieval, semantic caching, and production guardrails.
+Read full article [here](https://laputski.ai/advanced-rag-trade-offs).
 
 Knowledge base: **Acme Corp HR Policies** — 20 fictional policy documents, demonstrating the system end-to-end.
 
