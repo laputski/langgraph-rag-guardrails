@@ -102,8 +102,32 @@ async def query(
         prompt_version=prompt_version,
     )
 
+    # Start Langfuse trace (no-op when langfuse is disabled)
+    lf_client = request.app.state.langfuse
+    lf_trace = None
+    if lf_client:
+        lf_trace = lf_client.trace(
+            id=request_id,
+            name="rag-query",
+            input=body.query,
+            user_id=body.user_id,
+        )
+
     # Run the LangGraph pipeline
     final_state = await rag_graph.ainvoke(state)
+
+    if lf_trace:
+        lf_trace.update(
+            output=final_state.get("final_answer", ""),
+            metadata={
+                "from_cache": final_state.get("from_cache", False),
+                "sources": final_state.get("sources", []),
+                "retry_count": max(0, final_state.get("llm_retry_count", 0) - 1),
+                "model": final_state.get("llm_model_used", ""),
+                "error_code": final_state.get("error_code"),
+            },
+        )
+        lf_client.flush()
 
     # If input was blocked, return a 400 before starting any SSE stream
     if not final_state.get("input_guard_passed", True) or final_state.get(

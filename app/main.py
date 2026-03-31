@@ -122,6 +122,19 @@ async def lifespan(app: FastAPI):
         "prompt_registry": prompt_registry,
     }
 
+    # 9. Langfuse (optional observability)
+    if settings.langfuse_enabled:
+        from langfuse import Langfuse
+        lf_client = Langfuse(
+            secret_key=settings.langfuse_secret_key,
+            public_key=settings.langfuse_public_key,
+            host=settings.langfuse_host,
+        )
+        print(f"  ✓ Langfuse tracing enabled → {settings.langfuse_host}")
+    else:
+        lf_client = None
+    app.state.langfuse = lf_client
+
     print("\n✅ Advanced RAG service ready!")
     print(f"   API docs: http://localhost:8000/docs\n")
 

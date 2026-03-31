@@ -42,7 +42,7 @@ dependencies = [
     # Numpy
     "numpy>=1.26.0",
     # Observability (optional)
-    "langfuse>=2.36.0",
+    "langfuse>=2.36.0,<3",
 ]
 
 [project.optional-dependencies]
