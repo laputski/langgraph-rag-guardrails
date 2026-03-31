@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.api.routes import router
@@ -166,6 +167,7 @@ def create_app() -> FastAPI:
     setup_rate_limiter(app, settings.rate_limit_per_minute)
 
     app.include_router(router)
+    app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
     return app
 
