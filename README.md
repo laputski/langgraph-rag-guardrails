@@ -1,4 +1,4 @@
-# Advanced RAG Reference Implementation
+# Reference RAG Implementation [IN PROGRESS]
 
 Reference implementation of **Advanced RAG** from scratch using LangGraph, hybrid retrieval, semantic caching, and production guardrails.
 Read full article [here](https://laputski.ai/advanced-rag-trade-offs).
@@ -7,7 +7,7 @@ Knowledge base: **Acme Corp HR Policies** — 20 fictional policy documents, dem
 
 ---
 
-## What is Advanced RAG?
+## What is RAG?
 
 ![Advanced RAG](rag.png)
 
